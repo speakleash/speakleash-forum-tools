@@ -118,3 +118,4 @@ The ManifestManager class generates a manifest file containing metadata about th
 ## Contributing
 
 Contributions are welcome! Please submit a pull request or open an issue to discuss your ideas.
+
