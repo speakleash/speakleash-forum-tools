@@ -33,11 +33,11 @@ import psutil
 import pandas
 from tqdm import tqdm
 from bs4 import BeautifulSoup
-from speakleash_forum_tools.src.config_manager import ConfigManager
-from speakleash_forum_tools.src.crawler_manager import CrawlerManager
-from speakleash_forum_tools.src.forum_engines import ForumEnginesManager
-from speakleash_forum_tools.src.archive_manager import ArchiveManager, Archive
-from speakleash_forum_tools.src.utils import create_session
+from speakleash_forum_tools.config_manager import ConfigManager
+from speakleash_forum_tools.crawler_manager import CrawlerManager
+from speakleash_forum_tools.forum_engines import ForumEnginesManager
+from speakleash_forum_tools.archive_manager import ArchiveManager, Archive
+from speakleash_forum_tools.utils import create_session
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)     # Supress warning about 'InsecureRequest' (session.get(..., verify = False))
 
@@ -532,4 +532,5 @@ class Scraper:
         if not file_name:
             file_name = self.config.topics_visited_file
         urls_dataframe.to_csv(os.path.join(self.config.dataset_folder, file_name), sep='\t', header=head, mode=mode, index=False, encoding='utf-8')
+            
         self.logger_tool.info(f"Archive // Saved file -> DataFrame: {urls_dataframe.shape} -> {file_name}")

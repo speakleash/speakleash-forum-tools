@@ -17,10 +17,10 @@ Dependencies:
 import logging
 from typing import List, Literal
 
-from speakleash_forum_tools.src.config_manager import ConfigManager
-from speakleash_forum_tools.src.crawler_manager import CrawlerManager
-from speakleash_forum_tools.src.scraper import Scraper
-from speakleash_forum_tools.src.manifest_manager import ManifestManager
+from speakleash_forum_tools.config_manager import ConfigManager
+from speakleash_forum_tools.crawler_manager import CrawlerManager
+from speakleash_forum_tools.scraper import Scraper
+from speakleash_forum_tools.manifest_manager import ManifestManager
 
 
 class ForumToolsCore:

@@ -46,8 +46,8 @@ from typing import Optional, Union, List
 
 from bs4 import BeautifulSoup
 
-from speakleash_forum_tools.src.config_manager import ConfigManager
-from speakleash_forum_tools.src.utils import create_session
+from speakleash_forum_tools.config_manager import ConfigManager
+from speakleash_forum_tools.utils import create_session
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)     # Supress warning about 'InsecureRequest' (session.get(..., verify = False))
 

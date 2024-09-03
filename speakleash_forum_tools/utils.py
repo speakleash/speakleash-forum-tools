@@ -3,6 +3,7 @@ Utility Module
 
 Provides funcions for other modules.
 """
+import pathlib
 import time
 import requests
 import logging
@@ -10,8 +11,9 @@ from requests.adapters import HTTPAdapter           # install requests
 from urllib3.util.retry import Retry                # install urllib3
 from typing import Optional, Union
 
-from speakleash_forum_tools.src.__version__ import __version__
-
+from speakleash_forum_tools.__version__ import __version__
+import pandas as pd
+import polars as pl
 
 def create_session(retry_total: Optional[Union[bool, int]] = 3, retry_backoff_factor: float = 3.0, verify: bool = False) -> requests.Session:
     """
@@ -76,3 +78,19 @@ def timewrap(func):
         logging.info(f"* Timing * -> Func: {func.__name__} | Time: {(end-start) * 1000} ms = {end-start} sec = {(end-start)/60} min")
         return output
     return innerfunc
+
+def load_zst_data(path: pathlib.Path | str) -> pl.DataFrame:
+    if isinstance(path, pathlib.Path):
+        path = path.as_posix()  
+    df = pl.DataFrame(pd.read_json(path, lines=True))
+    return df.unnest('meta')
+
+def turn_zst_data_to_delta(path: pathlib.Path | str, output_path: pathlib.Path | str) -> None:
+    df = load_zst_data(path)
+    if isinstance(output_path, pathlib.Path):
+        output_path = output_path.as_posix()
+    df.write_delta(output_path, mode='overwrite')
+
+def display_polars_df_as_full_table(df: pl.DataFrame, limit: int = 100, column_width: int = 1000) -> None:
+    with pl.Config(fmt_str_lengths=column_width, tbl_formatting="ASCII_FULL"):
+        print(df.head(limit))

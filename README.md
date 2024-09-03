@@ -18,7 +18,7 @@ SpeakLeash Forum Tools is a comprehensive toolkit designed for crawling, scrapin
 
 - **Forum Crawling**: Efficiently crawl forums using sitemaps or manual crawling techniques.
 - **Data Scraping**: Extract text data from forum pages with support for pagination and different forum engines.
-- **Forum Engines Supports**: ['invision', 'phpbb', 'ipboard', 'xenforo', 'other'] - ‘other’ option is designed for more difficult forums, where appropriate parameters such as pagination or HTML paths with posts must be defined. 
+- **Forum Engines Supports**: ['invision', 'phpbb', 'ipboard', 'xenforo', 'other'] - ‘other’ option is designed for more difficult forums, where appropriate parameters such as pagination or HTML paths with posts must be defined.
 - **Data Archiving**: Manage and merge scraped data into well-organized archives.
 - **Manifest Management**: Create and handle SpeakLeash manifest files for datasets, including metadata and statistics.
 - **Documentation**: Each module and class is carefully documented to make it easy to understand and use.
@@ -26,31 +26,37 @@ SpeakLeash Forum Tools is a comprehensive toolkit designed for crawling, scrapin
 
 ## Installation
 
-Currently, this toolkit is available as a repository on GitHub. To use it, you need to clone the repository:
+Prefered way to work with this package is to use [Poetry](https://python-poetry.org/). To install it, run:
 
 ```bash
-git clone https://github.com/speakleash/speakleash-forum-tools.git
-cd speakleash-forum-tools
+pip install poetry==1.8.3
 ```
 
-For testing create new virtual environment using:
+After that, you can install the package using:
+
 ```bash
-python -m venv .venv
+poetry install
 ```
 
-After that activate virtual environment:
+You can also use Docker image instead (it comes with required Python version - 3.11 and poetry installed). To build the image, run:
+
 ```bash
-# Linux
-. .venv/bin/activate
-
-# Windows
-. .\.venv\Scripts\Activate.ps1
+docker build -t speakleash_forum_tools .
 ```
+To run the image in the interactive mode, run:
 
-And install requirements:
 ```bash
-pip install -r requirements.txt 
+docker run -it -v $(pwd)/data:/app/scraper_workspace speakleash_forum_tools:latest /bin/bash
 ```
+
+Note that it mounts local `data` directory to the container's `scraper_workspace` directory, which is used to store the scraped data.
+
+When running above command you will have interactive access to bash with poetry project installed. You can run any CLI command:
+```shell
+poetry run speakleash_forum_tools run-scraper --dataset_url https://forum.szajbajk.pl --forum_engine invision --dataset_name test_szajbajk
+```
+
+![docker-demo.gif](docker-demo.gif)
 
 ## Usage
 
@@ -63,6 +69,14 @@ An example script (run_examples.py) is included in the repository to demonstrate
 python run_examples.py
 ```
 
+Another way to interact with the package is to use the command line interface (CLI). You can run the CLI with the following command:
+
+```bash
+poetry run speakleash_forum_tools --help
+```
+
+It will display the available commands and options.
+
 If you want to use the tool in your code you can do so with a few lines:
 
 ```python
@@ -73,7 +87,7 @@ if __name__ == "__main__":
 ```
 
 > [!NOTE]  
-> Keep in mind that some forums, even if they use predefined engines, may be defined differently - in which case the tool has some functionality built in to solve the problem. 
+> Keep in mind that some forums, even if they use predefined engines, may be defined differently - in which case the tool has some functionality built in to solve the problem.
 
 Here are some additional examples that may help you find a solution when testing in different forums:
 
@@ -105,7 +119,6 @@ ForumToolsCore(... ,
     print_to_console: bool = True,  # If False, only the progress bar is displayed
 )
 ```
-
 
 ## Archiving
 

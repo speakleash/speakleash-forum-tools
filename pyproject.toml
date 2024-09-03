@@ -1,0 +1,37 @@
+[tool.poetry]
+name = "speakleash_forum_tools"
+version = "0.1.0"
+description = ""
+authors = ["speakleash-forum-tools"]
+readme = "README.md"
+
+packages = [
+    { include = "speakleash_forum_tools"}
+]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+psutil = "^6.0.0"
+urllib3 = "^2.2.2"
+beautifulsoup4 = "^4.12.3"
+pandas = "^2.2.2"
+polars = "^1.4.1"
+lm-dataformat = "^0.0.20"
+tqdm = "^4.66.5"
+click = "^8.1.7"
+zstandard = "^0.23.0"
+pyarrow = "^17.0.0"
+deltalake = "^0.18.2"
+pydantic = "^2.8.2"
+ultimate-sitemap-parser = "^0.5"
+
+[tool.poetry.scripts]
+speakleash_forum_tools = 'speakleash_forum_tools.cli:cli'
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.5.7"
+pytest = "^8.3.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -45,9 +45,9 @@ from typing import List
 import pandas
 from usp.tree import sitemap_tree_for_homepage      # install ultimate-sitemap-parser (use this fork: pip install git+https://github.com/Samox1/ultimate-sitemap-parser@develop#egg=ultimate-sitemap-parser )
 
-from speakleash_forum_tools.src.config_manager import ConfigManager
-from speakleash_forum_tools.src.forum_engines import ForumEnginesManager
-from speakleash_forum_tools.src.archive_manager import ArchiveManager
+from speakleash_forum_tools.config_manager import ConfigManager
+from speakleash_forum_tools.forum_engines import ForumEnginesManager
+from speakleash_forum_tools.archive_manager import ArchiveManager
 
 # logging.getLogger("usp.helpers").setLevel(logging.ERROR)        # Set logging level for 'ultimate-sitemap-parser' to only ERROR
 # logging.getLogger("usp.fetch_parse").setLevel(logging.ERROR)    # Set logging level for 'ultimate-sitemap-parser' to only ERROR

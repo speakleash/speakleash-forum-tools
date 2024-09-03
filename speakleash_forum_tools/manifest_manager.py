@@ -23,7 +23,7 @@ Dependencies:
 import os
 import json
 
-from speakleash_forum_tools.src.config_manager import ConfigManager
+from speakleash_forum_tools.config_manager import ConfigManager
 
 class ManifestManager:
     def __init__(self, config_manager: ConfigManager, directory_to_save: str, total_docs: int = 0, total_characters: int = 0):
